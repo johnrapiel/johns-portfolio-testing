@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frontend Fundamentals — Learn, Test, Practice</title>
+  <link rel="stylesheet" href="css/learn.css">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">JR <span>Learn</span></a>
+      <div class="nav-progress">
+        <span id="progress-label">0 / 8 lessons</span>
+        <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="app-layout">
+
+    <!-- Sidebar: Lesson List -->
+    <aside class="sidebar" id="sidebar">
+      <h2 class="sidebar-title">Curriculum</h2>
+      <ol class="lesson-list" id="lesson-list">
+        <!-- Populated by JS -->
+      </ol>
+    </aside>
+
+    <!-- Mobile toggle -->
+    <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle menu">&#9776;</button>
+
+    <!-- Main Content Area -->
+    <main class="main-content" id="main-content">
+
+      <!-- Welcome screen (shown initially) -->
+      <section class="welcome-screen" id="welcome-screen">
+        <div class="welcome-card">
+          <h1>Frontend Fundamentals</h1>
+          <p class="welcome-subtitle">A bite-sized learning path built for designers who want to understand how the web works.</p>
+          <div class="welcome-features">
+            <div class="feature">
+              <div class="feature-icon">&#128218;</div>
+              <h3>Learn</h3>
+              <p>Short, clear explanations of core concepts with live code examples.</p>
+            </div>
+            <div class="feature">
+              <div class="feature-icon">&#9997;</div>
+              <h3>Test</h3>
+              <p>Quick-fire quizzes after each lesson to check your understanding.</p>
+            </div>
+            <div class="feature">
+              <div class="feature-icon">&#128187;</div>
+              <h3>Practice</h3>
+              <p>Hands-on coding challenges you can edit and preview live.</p>
+            </div>
+          </div>
+          <button class="btn-primary" id="start-btn">Start Lesson 1</button>
+        </div>
+      </section>
+
+      <!-- Lesson view (hidden initially) -->
+      <section class="lesson-view" id="lesson-view" style="display:none;">
+
+        <!-- Phase: LEARN -->
+        <div class="phase" id="phase-learn">
+          <span class="phase-badge learn-badge">Learn</span>
+          <h1 class="lesson-title" id="lesson-title"></h1>
+          <div class="lesson-body" id="lesson-body"></div>
+
+          <div class="code-example">
+            <div class="code-header">
+              <span>Example Code</span>
+              <button class="btn-small" id="copy-code-btn">Copy</button>
+            </div>
+            <pre><code id="code-block"></code></pre>
+          </div>
+
+          <div class="preview-area">
+            <div class="preview-header">Live Preview</div>
+            <iframe id="preview-frame" sandbox="allow-scripts" title="Live preview"></iframe>
+          </div>
+
+          <button class="btn-primary" id="to-quiz-btn">Test Your Knowledge &rarr;</button>
+        </div>
+
+        <!-- Phase: TEST -->
+        <div class="phase" id="phase-test" style="display:none;">
+          <span class="phase-badge test-badge">Test</span>
+          <h2 class="quiz-question" id="quiz-question"></h2>
+          <div class="quiz-options" id="quiz-options"></div>
+          <div class="quiz-feedback" id="quiz-feedback" style="display:none;"></div>
+          <button class="btn-primary" id="to-practice-btn" style="display:none;">Practice It &rarr;</button>
+        </div>
+
+        <!-- Phase: PRACTICE -->
+        <div class="phase" id="phase-practice" style="display:none;">
+          <span class="phase-badge practice-badge">Practice</span>
+          <h2 class="practice-title" id="practice-title"></h2>
+          <p class="practice-instructions" id="practice-instructions"></p>
+
+          <div class="editor-area">
+            <div class="editor-header">
+              <span>Your Code</span>
+              <button class="btn-small" id="run-code-btn">Run &rarr;</button>
+            </div>
+            <textarea id="practice-editor" spellcheck="false"></textarea>
+          </div>
+
+          <div class="preview-area">
+            <div class="preview-header">Your Output</div>
+            <iframe id="practice-preview" sandbox="allow-scripts" title="Practice preview"></iframe>
+          </div>
+
+          <div class="lesson-nav">
+            <button class="btn-secondary" id="replay-btn">&larr; Review Lesson</button>
+            <button class="btn-primary" id="next-lesson-btn">Next Lesson &rarr;</button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Completion screen -->
+      <section class="completion-screen" id="completion-screen" style="display:none;">
+        <div class="welcome-card">
+          <div class="completion-icon">&#127942;</div>
+          <h1>Congratulations!</h1>
+          <p class="welcome-subtitle">You've completed all 8 lessons covering the foundations of frontend engineering.</p>
+          <p>You now understand HTML structure, CSS styling, layout, Flexbox, responsive design, JavaScript basics, DOM manipulation, and how they all work together.</p>
+          <button class="btn-primary" id="restart-btn">Start Over</button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="js/learn.js"></script>
+</body>
+</html>
