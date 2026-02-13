@@ -861,10 +861,7 @@ function loadLesson(index) {
 // ---- Preview Rendering ----
 function renderPreview(iframeId, code) {
   const iframe = document.getElementById(iframeId);
-  const doc = iframe.contentDocument || iframe.contentWindow.document;
-  doc.open();
-  doc.write(code);
-  doc.close();
+  iframe.srcdoc = code;
 }
 
 // ---- Quiz ----
