@@ -311,6 +311,120 @@ const lessons = [
 
   // LESSON 5
   {
+    title: 'CSS Grid — Two-Dimensional Layouts',
+    body: `
+      <p><strong>CSS Grid</strong> is a powerful layout system that lets you design in <strong>two dimensions</strong> — rows AND columns at the same time. While Flexbox is great for one-direction layouts, Grid gives you full control over both axes.</p>
+      <p>To use Grid, set <code>display: grid</code> on a <strong>parent container</strong>, then define your rows and columns:</p>
+      <div class="callout">
+        <code>grid-template-columns: 1fr 1fr 1fr;</code> — creates three equal columns.<br>
+        <code>grid-template-rows: auto 200px;</code> — first row sizes to content, second is 200px.
+      </div>
+      <p>Key properties you'll use:</p>
+      <ul>
+        <li><strong>display: grid</strong> — activates Grid on the container</li>
+        <li><strong>grid-template-columns / rows</strong> — defines the track sizes</li>
+        <li><strong>gap</strong> — spacing between cells (same as Flexbox gap)</li>
+        <li><strong>grid-column / grid-row</strong> — lets a child span multiple columns or rows</li>
+        <li><strong>fr unit</strong> — a fractional unit that shares available space (e.g. <code>1fr 2fr</code> gives the second column twice the width)</li>
+      </ul>
+      <div class="callout">
+        <strong>Flexbox vs Grid:</strong> Use <strong>Flexbox</strong> for one-dimensional flow (a nav bar, a row of cards). Use <strong>Grid</strong> for two-dimensional layouts (a page layout, a dashboard, an image gallery). They work great together!
+      </div>
+    `,
+    code:
+`<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 12px;
+    padding: 16px;
+    font-family: sans-serif;
+  }
+  .grid-item {
+    background: #e0f2fe;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    color: #0c4a6e;
+  }
+  /* Span the first item across two columns */
+  .wide {
+    grid-column: span 2;
+    background: #2e7dff;
+    color: white;
+  }
+  /* Span an item across two rows */
+  .tall {
+    grid-row: span 2;
+    background: #7c3aed;
+    color: white;
+  }
+</style>
+
+<div class="grid-container">
+  <div class="grid-item wide">Wide (2 cols)</div>
+  <div class="grid-item tall">Tall (2 rows)</div>
+  <div class="grid-item">A</div>
+  <div class="grid-item">B</div>
+  <div class="grid-item">C</div>
+</div>`,
+    quiz: {
+      question: 'What is the key difference between Flexbox and CSS Grid?',
+      options: [
+        'Flexbox is newer than Grid',
+        'Grid only works with fixed pixel sizes',
+        'Flexbox is one-dimensional (row OR column); Grid is two-dimensional (rows AND columns)',
+        'Grid replaces Flexbox and should always be used instead'
+      ],
+      answer: 2,
+      explanation: 'Flexbox lays out items along a single axis — either a row or a column. CSS Grid works in two dimensions simultaneously, letting you control both rows and columns. They complement each other: use Flexbox for simple one-direction layouts, and Grid when you need full two-dimensional control.'
+    },
+    practice: {
+      title: 'Build a Dashboard Layout',
+      instructions: 'Use CSS Grid to create a simple dashboard: a header spanning the full width, a sidebar on the left, and a main content area on the right. Hint: use grid-template-columns and grid-column to span elements across tracks.',
+      starter:
+`<style>
+  .dashboard {
+    display: grid;
+    /* Define 2 columns: sidebar (200px) and main (rest) */
+    grid-template-columns: 200px 1fr;
+    gap: 12px;
+    padding: 16px;
+    font-family: sans-serif;
+    min-height: 300px;
+  }
+  .header {
+    /* Make this span both columns */
+    background: #0b1d32;
+    color: white;
+    padding: 16px;
+    border-radius: 8px;
+    font-weight: 700;
+  }
+  .sidebar {
+    background: #dbeafe;
+    padding: 16px;
+    border-radius: 8px;
+  }
+  .main {
+    background: #f1f5f9;
+    padding: 16px;
+    border-radius: 8px;
+  }
+</style>
+
+<div class="dashboard">
+  <div class="header">Dashboard Header</div>
+  <div class="sidebar">Sidebar Nav</div>
+  <div class="main">Main Content Area</div>
+</div>`
+    }
+  },
+
+  // LESSON 6
+  {
     title: 'Responsive Design — Adapting to Any Screen',
     body: `
       <p><strong>Responsive design</strong> means your layout adapts to different screen sizes — phones, tablets, desktops. It's not a separate layout; it's the <em>same</em> HTML with different CSS rules that kick in at different widths.</p>
@@ -405,7 +519,7 @@ const lessons = [
     }
   },
 
-  // LESSON 6
+  // LESSON 7
   {
     title: 'JavaScript Basics — Making Pages Interactive',
     body: `
@@ -479,7 +593,7 @@ const lessons = [
     }
   },
 
-  // LESSON 7
+  // LESSON 8
   {
     title: 'DOM Manipulation — Changing the Page with JavaScript',
     body: `
@@ -586,7 +700,174 @@ const lessons = [
     }
   },
 
-  // LESSON 8
+  // LESSON 9
+  {
+    title: 'Reading Code — Navigating a Real Codebase',
+    body: `
+      <p>As a designer, you won't always be <em>writing</em> code — but you'll often need to <strong>read</strong> it. Whether you're reviewing a pull request, debugging a styling issue, or just trying to understand how a feature works, reading code is a superpower.</p>
+      <p>Here's what to focus on when reading code:</p>
+      <ul>
+        <li><strong>File structure</strong> — most projects organize files by type or feature: <code>/components</code>, <code>/styles</code>, <code>/pages</code></li>
+        <li><strong>Component names</strong> — good code uses descriptive names like <code>ProfileCard</code>, <code>NavBar</code>, <code>LoginForm</code></li>
+        <li><strong>Props &amp; attributes</strong> — data passed into components (like function arguments) that control their appearance and behavior</li>
+        <li><strong>CSS class names</strong> — look for patterns like BEM (<code>.card__title--active</code>) or utility classes (<code>.flex .gap-4 .text-sm</code>)</li>
+      </ul>
+      <div class="callout">
+        <strong>Tip:</strong> You don't need to understand every line. Start by reading the HTML/JSX structure — it tells you <em>what</em> gets rendered. Then check the CSS for <em>how it looks</em>, and the JS for <em>what it does</em> on interaction.
+      </div>
+      <p><strong>Reading error messages</strong> is equally important. Browser errors usually tell you:</p>
+      <ul>
+        <li>The <strong>type</strong> of error (TypeError, SyntaxError, ReferenceError)</li>
+        <li>A <strong>message</strong> describing what went wrong</li>
+        <li>The <strong>file and line number</strong> where it happened</li>
+      </ul>
+      <p>Don't panic when you see red text in the console — it's the browser trying to <em>help</em> you find the problem.</p>
+    `,
+    code:
+`<!-- A typical component structure -->
+<style>
+  /* BEM-style naming: Block__Element--Modifier */
+  .profile-card {
+    font-family: sans-serif;
+    max-width: 320px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .profile-card__header {
+    background: #2e7dff;
+    color: white;
+    padding: 24px;
+    text-align: center;
+  }
+  .profile-card__header h2 {
+    margin: 0 0 4px;
+  }
+  .profile-card__header p {
+    opacity: 0.85;
+    font-size: 14px;
+  }
+  .profile-card__body {
+    padding: 20px;
+  }
+  .profile-card__stat {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 14px;
+    color: #334155;
+  }
+  .profile-card__stat:last-child {
+    border-bottom: none;
+  }
+  .profile-card__stat strong {
+    color: #0f172a;
+  }
+  .profile-card__footer {
+    padding: 16px 20px;
+    background: #f8fafc;
+    text-align: center;
+  }
+  .profile-card__btn {
+    padding: 10px 28px;
+    background: #2e7dff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .profile-card__btn--outline {
+    background: transparent;
+    border: 1.5px solid #2e7dff;
+    color: #2e7dff;
+    margin-left: 8px;
+  }
+</style>
+
+<div class="profile-card">
+  <div class="profile-card__header">
+    <h2>Alex Rivera</h2>
+    <p>Product Designer</p>
+  </div>
+  <div class="profile-card__body">
+    <div class="profile-card__stat">
+      <span>Projects</span> <strong>24</strong>
+    </div>
+    <div class="profile-card__stat">
+      <span>Components</span> <strong>142</strong>
+    </div>
+    <div class="profile-card__stat">
+      <span>Team</span> <strong>Design Systems</strong>
+    </div>
+  </div>
+  <div class="profile-card__footer">
+    <button class="profile-card__btn">Follow</button>
+    <button class="profile-card__btn profile-card__btn--outline">Message</button>
+  </div>
+</div>`,
+    quiz: {
+      question: 'When reading unfamiliar code, what should you look at first to understand what a component renders?',
+      options: [
+        'The JavaScript logic and variables',
+        'The CSS animations and transitions',
+        'The HTML/JSX structure — it shows what elements are on the page',
+        'The import statements at the top of the file'
+      ],
+      answer: 2,
+      explanation: 'The HTML (or JSX in React) structure is the best starting point because it shows you exactly what gets rendered on the page — the headings, buttons, inputs, and layout. From there you can trace how CSS styles them and how JS makes them interactive.'
+    },
+    practice: {
+      title: 'Read and Fix a Component',
+      instructions: 'This component has three bugs — a missing closing tag, a wrong CSS class name, and a JS error. Read the code carefully, find the issues, and fix them. Hint: check the HTML structure, compare CSS selectors to class names, and look at the querySelector string.',
+      starter:
+`<style>
+  .alert-box {
+    font-family: sans-serif;
+    padding: 16px 20px;
+    border-radius: 8px;
+    background: #fef2f2;
+    border: 1px solid #fca5a5;
+    color: #991b1b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .alert-box__message {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .alert-box__close {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #991b1b;
+    padding: 4px 8px;
+  }
+</style>
+
+<!-- Bug 1: there's a missing closing tag -->
+<div class="alert-box">
+  <span class="alert-box__messge">
+    <strong>Error:</strong> Something went wrong. Please try again.
+  </span>
+  <button class="alert-box__close" id="close-btn">&times;</button>
+</div>
+
+<script>
+  // Bug 3: wrong selector string
+  const closeBtn = document.querySelector('#closebtn');
+  const alertBox = document.querySelector('.alert-box');
+  closeBtn.addEventListener('click', function() {
+    alertBox.style.display = 'none';
+  });
+</script>`
+    }
+  },
+
+  // LESSON 10
   {
     title: 'Putting It All Together — HTML + CSS + JS',
     body: `
